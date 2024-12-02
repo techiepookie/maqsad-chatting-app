@@ -1,0 +1,350 @@
+<!--
+Maqsad Chat Room v1.0.0
+Author: Nikhil Kumar
+GitHub: <Insert your GitHub profile URL>
+Description: A chat room application designed and developed by Nikhil Kumar, a first-year student aspiring to create professional-grade projects. 
+License: MIT
+Year: 2024
+
+NOTE: If you use or modify this project, please give credit to the original author.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maqsad Chat Room</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <audio id="notificationSound" src="sound.mp3"></audio>
+    <div class="image-container">
+        <img src="maqsad.png" alt="Cool Animation" class="animated-image">
+    </div>
+    <div class="floating-box">
+        <a href="https://drive.google.com/your-project-link" target="_blank">
+            <img src="open.png" alt="Open Source" class="box-icon">
+            <p>View Project</p>
+        </a>
+    </div>
+  
+
+    
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://iili.io/20yC96b.png" type="image/x-icon">
+    <style>
+            /* Container for the image */
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        position: relative;
+    }
+
+    /* Styling for the image */
+    .animated-image {
+        width: 200px; /* Adjust the size as needed */
+        height: auto;
+        border-radius: 20px;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 0 15px rgba(50, 205, 50, 0.6); /* Cool glowing shadow */
+    }
+
+    /* Outline animation */
+    .image-container:before {
+        content: '';
+        position: absolute;
+        width: 220px; /* Adjust size to fit the image with some padding */
+        height: 220px;
+        border-radius: 25px;
+        border: 3px solid lime; /* Outline color */
+        animation: outlineAnimation 2s infinite;
+        box-shadow: 0 0 20px rgba(50, 205, 50, 0.8);
+        z-index: 0;
+    }
+
+    /* Animation keyframes */
+    @keyframes outlineAnimation {
+        0% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+    }
+
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #000000, #0f0f0f);
+            color: lime;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            animation: backgroundAnimation 10s infinite;
+        }
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            animation: textFlicker 3s infinite;
+        }
+        @keyframes textFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        button {
+            background: lime;
+            color: black;
+            font-size: 1.5rem;
+            border: none;
+            padding: 15px 30px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        button:hover {
+            background: darkgreen;
+            transform: scale(1.1);
+        }
+        /* Popup Styles */
+        #popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: #111;
+            border: 2px solid #32CD32;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            animation: popupAnimation 0.5s ease-out;
+        }
+
+        .popup-content p {
+            color: white;
+            margin: 10px 0;
+        }
+
+        .popup-content span {
+            color: #32CD32;
+            font-weight: bold;
+        }
+
+        @keyframes popupAnimation {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+       
+/* Floating Box Styles */
+.floating-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(145deg, #4CAF50, #2E7D32);
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    z-index: 1000;
+    text-align: center;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+.floating-box:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Icon Styling */
+.box-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.box-icon:hover {
+    transform: rotate(360deg);
+}
+
+/* Link Styling */
+.floating-box a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.floating-box p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+    </style>
+   
+
+</head>
+<body>
+    <h1>Welcome to the Maqsad Chat Room</h1>
+    <button id="startChatButton">Start New Chat</button>
+
+    <!-- Popup Window -->
+    <div id="popup">
+        <div class="popup-content">
+            <p>Chat Link: <span id="chat-link"></span></p>
+            <button id="copy-btn">Copy Link</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("startChatButton").addEventListener("click", () => {
+            const pythonServerUrl = "http://127.0.0.1:5000"; // Replace with your Python server URL
+            const chatroomId = generateRandomId();
+            const chatroomUrl = `${pythonServerUrl}/${chatroomId}`; // Dynamically use the Python server URL
+    
+            // Show popup with the generated chat link
+            showPopup(chatroomUrl);
+    
+            // Open the new chatroom in a new tab
+            window.open(chatroomUrl, "_blank");
+        });
+    
+        function generateRandomId() {
+            return Math.random().toString(36).substr(2, 8); // Generate unique chatroom ID
+        }
+    
+        // Show Popup Function
+        function showPopup(link) {
+            const popup = document.getElementById('popup');
+            const chatLinkSpan = document.getElementById('chat-link');
+            const copyBtn = document.getElementById('copy-btn');
+    
+            popup.style.display = 'flex';
+            chatLinkSpan.textContent = link;
+    
+            // Automatically copy the link to clipboard
+            navigator.clipboard.writeText(link).then(() => {
+                copyBtn.textContent = 'Copied!';
+            });
+    
+            // Reset Copy Button text after a short delay
+            setTimeout(() => {
+                copyBtn.textContent = 'Copy Link';
+            }, 1500);
+    
+            // Show browser notification
+            showNotification("Chat Room Created", `Your chat link: ${link}`);
+        }
+    
+        // Browser Notification Function
+        function showNotification(title, body) {
+            // Play custom notification sound
+            playCustomSound();
+    
+            // Check if the Notifications API is supported
+            if (!("Notification" in window)) {
+                console.error("This browser does not support desktop notifications.");
+                return;
+            }
+    
+            // Request notification permission if not granted
+            if (Notification.permission === "default") {
+                Notification.requestPermission().then((permission) => {
+                    if (permission === "granted") {
+                        displayNotification(title, body);
+                    }
+                });
+            } else if (Notification.permission === "granted") {
+                displayNotification(title, body);
+            }
+        }
+    
+        function displayNotification(title, body) {
+            new Notification(title, {
+                body: body,
+                icon: "favico.ico" // Replace with a valid icon path
+            });
+        }
+    
+        function playCustomSound() {
+            const audio = document.getElementById("notificationSound");
+            if (audio) {
+                audio.currentTime = 0; // Reset to the start
+                audio.play().catch((error) => {
+                    console.error("Error playing custom notification sound:", error);
+                });
+            }
+        }
+    
+        // Close Popup when clicking outside of content
+        document.getElementById('popup').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('popup')) {
+                document.getElementById('popup').style.display = 'none';
+            }
+        });
+        // Print Screen disable and auto blur
+        document.addEventListener("DOMContentLoaded", () => {
+    const floatingBox = document.querySelector(".floating-box");
+    floatingBox.style.opacity = "0";
+    floatingBox.style.transition = "opacity 1s ease-in-out";
+    setTimeout(() => {
+        floatingBox.style.opacity = "1";
+    }, 500);
+});
+
+        
+    
+        </script>
+    </body>
+</html>
+<!--
+Maqsad Chat Room v1.0.0
+Author: Nikhil Kumar
+GitHub: <Insert your GitHub profile URL>
+Description: A chat room application designed and developed by Nikhil Kumar, a first-year student aspiring to create professional-grade projects. 
+License: MIT
+Year: 2024
+
+NOTE: If you use or modify this project, please give credit to the original author.
+-->
+
