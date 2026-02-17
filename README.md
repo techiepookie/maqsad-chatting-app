@@ -19,9 +19,3 @@ Maqsad Chat Room is a real-time chat application designed and developed by **Nik
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE.txt` file for more details.
-
-## Author
-Feel free to connect with me: 
-- **GitHub**: [techiepookie](https://https://github.com/techiepookie)
-- **Instagram**: [finance_walah](https://instagram.com/finance_walah)
-- **Whatsapp**: [+91 8949206491](https://wa.me/918949206491 )
